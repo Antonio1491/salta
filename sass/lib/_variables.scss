@@ -1,0 +1,22 @@
+$colorPrimary : #004242;
+$verde : #8CB746;
+$aqua : #00A493;
+$rojo : #D1003E;
+$azul : #DCEDF6;
+
+$tituloIndex : "Antonio Bold";
+
+@font-face {
+  font-family: "Antonio Bold";
+  src : url("../assets/font/Antonio-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Antonio Ligera";
+  src: url("../assets/font/Antonio-Light.ttf");
+}
+
+@font-face {
+  font-family: "Avenir Bold";
+  src: url("../assets/font/AvenirNextLTPro-Bold.ttf");
+}
