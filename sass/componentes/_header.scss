@@ -7,6 +7,10 @@
   background-size: cover;
   background-color: $azul;
   position: relative;
+  @media screen and (max-width: 580px){
+    background-image: url("../img/paisajeMovil.png");
+    height: 92vh;
+  }
 }
 .contenedorPortada{
   position: absolute;
@@ -14,14 +18,19 @@
   z-index: 2;
   -moz-z-index: 2;
   display: grid;
-  grid-template: repeat(2, 30vh) / repeat(2, 50%);
+  grid-template: auto / repeat(2, 50%);
   align-items: center;
   justify-items: center;
-  border: 3px solid $rojo;
+  @media screen and (max-width: 580px){
+    grid-auto-columns: 100%;
+    grid-template-rows: 30vh 20vh 40vh;
+  }
 }
 .itemContenidoPortada{
   text-transform: uppercase;
   color: $colorPrimary;
+  // border: 3px solid $rojo;
+  align-content: center;
   .logotipo img{
     height: 20vh;
   }
@@ -36,5 +45,17 @@
 
     font-size: 14px;
     font-family: "Avenir Bold";
+  }
+}
+.itemContenidoPortada:nth-of-type(3){
+  grid-column: 1 / span 3;
+  @media screen and (max-width: 580px){
+    grid-column: 1 / span 2;
+  }
+}
+.itemContenidoPortada:nth-of-type(1),
+.itemContenidoPortada:nth-of-type(2){
+  @media screen and (max-width: 580px){
+  grid-column: 1 / span 2;
   }
 }

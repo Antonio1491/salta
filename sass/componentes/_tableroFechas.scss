@@ -1,0 +1,38 @@
+.tableroFechas{
+  background-color: #0d1515;
+  opacity: 0.8;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 30px;
+  margin-bottom: 30px;
+  text-align: center;
+  @media screen and(max-width: 680px){
+    width: 75%;
+    border-radius: 20px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    }
+  }
+  h4{
+    font-size: 22px;
+    font-family: Antonio Bold;
+    letter-spacing: 1px;
+    color: $verde;
+      @media screen and(max-width: 680px){
+        font-size: 16px;
+      }
+  }
+  ul li{
+    font-family: Avenir Bold;
+    font-size: 14px;
+    list-style: none;
+    @media screen and(max-width: 680px){
+      font-size: 11px;
+    }
+  }
+  .nota span{
+    font-size: 13px;
+    @media screen and(max-width: 680px){
+      font-size: 10px;
+  }
+}

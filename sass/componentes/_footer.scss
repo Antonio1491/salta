@@ -1,0 +1,20 @@
+footer{
+  height: 15vh;
+  background-color: $colorPrimary;
+  justify-content: center;
+  @media screen and (max-width: 580px){
+    height: 8vh;
+  }
+  figure img{
+    height: 8vh;
+    margin-top: 3.5vh;
+    @media screen and (max-width: 580px){
+      height:4vh;
+      margin-top: 1.5vh;
+    }
+  }
+}
+footer div{
+  // display: flex;
+  // align-content: center;
+}

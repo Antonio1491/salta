@@ -7,8 +7,20 @@
   src: url("../assets/font/Antonio-Light.ttf"); }
 
 @font-face {
+  font-family: "Antonio Regular";
+  src: url("../assets/font/Antonio-Regular.ttf"); }
+
+@font-face {
   font-family: "Avenir Bold";
   src: url("../assets/font/AvenirNextLTPro-Bold.ttf"); }
+
+@font-face {
+  font-family: "Avenir Regular";
+  src: url("../assets/font/AvenirNextLTPro-Regular.ttf"); }
+
+@font-face {
+  font-family: "Avenir Medium";
+  src: url("../assets/font/avenirltstd_medium.ttf"); }
 
 #portada {
   overflow: hidden;
@@ -19,6 +31,10 @@
   background-size: cover;
   background-color: #DCEDF6;
   position: relative; }
+  @media screen and (max-width: 580px) {
+    #portada {
+      background-image: url("../img/paisajeMovil.png");
+      height: 92vh; } }
 
 .contenedorPortada {
   position: absolute;
@@ -27,18 +43,24 @@
   -moz-z-index: 2;
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: (30vh)[2];
+  -ms-grid-rows: auto;
   -ms-grid-columns: (50%)[2];
-  grid-template: repeat(2, 30vh)/repeat(2, 50%);
+  grid-template: auto/repeat(2, 50%);
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  justify-items: center;
-  border: 3px solid #D1003E; }
+  justify-items: center; }
+  @media screen and (max-width: 580px) {
+    .contenedorPortada {
+      grid-auto-columns: 100%;
+      -ms-grid-rows: 30vh 20vh 40vh;
+      grid-template-rows: 30vh 20vh 40vh; } }
 
 .itemContenidoPortada {
   text-transform: uppercase;
-  color: #004242; }
+  color: #004242;
+  -ms-flex-line-pack: center;
+  align-content: center; }
   .itemContenidoPortada .logotipo img {
     height: 20vh; }
   .itemContenidoPortada .fecha h4 {
@@ -51,6 +73,96 @@
     font-size: 14px;
     font-family: "Avenir Bold"; }
 
-#convocatoria {
+.itemContenidoPortada:nth-of-type(3) {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1 / span 3; }
+  @media screen and (max-width: 580px) {
+    .itemContenidoPortada:nth-of-type(3) {
+      -ms-grid-column: 1;
+      -ms-grid-column-span: 2;
+      grid-column: 1 / span 2; } }
+
+@media screen and (max-width: 580px) {
+  .itemContenidoPortada:nth-of-type(1),
+  .itemContenidoPortada:nth-of-type(2) {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-column: 1 / span 2; } }
+
+footer {
   height: 15vh;
-  background-color: #004242; }
+  background-color: #004242;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center; }
+  @media screen and (max-width: 580px) {
+    footer {
+      height: 8vh; } }
+  footer figure img {
+    height: 8vh;
+    margin-top: 3.5vh; }
+    @media screen and (max-width: 580px) {
+      footer figure img {
+        height: 4vh;
+        margin-top: 1.5vh; } }
+
+.btnRojo {
+  background-color: #D1003E;
+  color: white;
+  text-transform: uppercase;
+  padding: 20px 25px;
+  border-radius: 30px;
+  font-family: Avenir Regular;
+  font-size: 14px;
+  letter-spacing: 1px; }
+  .btnRojo:hover {
+    color: white;
+    background-color: #bb043a; }
+
+.tableroFechas {
+  background-color: #0d1515;
+  opacity: 0.8;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 30px;
+  margin-bottom: 30px;
+  text-align: center; }
+  @media screen and (max-width: 680px) {
+    .tableroFechas {
+      width: 75%;
+      border-radius: 20px;
+      margin: 0 auto;
+      margin-bottom: 30px; } }
+
+h4 {
+  font-size: 22px;
+  font-family: Antonio Bold;
+  letter-spacing: 1px;
+  color: #8CB746; }
+  @media screen and (max-width: 680px) {
+    h4 {
+      font-size: 16px; } }
+
+ul li {
+  font-family: Avenir Bold;
+  font-size: 14px;
+  list-style: none; }
+  @media screen and (max-width: 680px) {
+    ul li {
+      font-size: 11px; } }
+
+.nota span {
+  font-size: 13px; }
+  @media screen and (max-width: 680px) {
+    .nota span {
+      font-size: 10px; } }
+
+.contador {
+  color: white;
+  background-color: #8CB746;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 1px;
+  margin: 0 auto; }

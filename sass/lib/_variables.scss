@@ -4,6 +4,8 @@ $aqua : #00A493;
 $rojo : #D1003E;
 $azul : #DCEDF6;
 
+
+$rojoHover : #bb043a;
 $tituloIndex : "Antonio Bold";
 
 @font-face {
@@ -17,6 +19,21 @@ $tituloIndex : "Antonio Bold";
 }
 
 @font-face {
+  font-family: "Antonio Regular";
+  src: url("../assets/font/Antonio-Regular.ttf");
+}
+
+@font-face {
   font-family: "Avenir Bold";
   src: url("../assets/font/AvenirNextLTPro-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Avenir Regular";
+  src: url("../assets/font/AvenirNextLTPro-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Avenir Medium";
+  src: url("../assets/font/avenirltstd_medium.ttf");
 }

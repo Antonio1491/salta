@@ -1,0 +1,98 @@
+@charset "UTF-8";
+header {
+  height: 65px;
+  background-color: #004242;
+  color: #ffffff;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 1em;
+  text-transform: uppercase; }
+  header figure img {
+    height: 55px; }
+
+.container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 40% 60%;
+  grid-template-columns: 40% 60%; }
+  .container .item {
+    margin: 20px; }
+  .container .encabezado {
+    color: #004242;
+    text-transform: uppercase;
+    padding: 10px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    margin-bottom: 1em;
+    border-bottom: 1px solid #e2dfdf; }
+
+.instrucciones {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: justify;
+  font-size: 14px;
+  color: #595857; }
+
+.btn {
+  color: white;
+  background-color: #D1003E;
+  padding: 10px 20px;
+  border-radius: 5px; }
+
+.ocultar {
+  display: none; }
+
+/* página registro concluido */
+.pacifico {
+  font-family: 'Pacifico', cursive; }
+
+.registrado {
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 20%; }
+
+.registrado-titulo {
+  font-size: 35px;
+  text-align: center;
+  color: #00A493;
+  margin-bottom: 24px; }
+
+.registrado-mensaje {
+  color: #787878;
+  text-align: center; }
+
+.registrado-nota {
+  font-size: 13px;
+  color: #787878; }
+
+.registrado-nota a,
+.instrucciones a {
+  color: #00A493; }
+
+ol.listaTemas li a {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #004242;
+  font-size: 12px; }
+
+.descripcionTema h1 {
+  font-size: 20px;
+  color: #8CB746;
+  text-transform: uppercase;
+  font-weight: bold; }
+
+.descripcionTema p {
+  font-size: 15px;
+  color: #004242;
+  text-align: justify; }
+
+.descripcionTema img {
+  height: 80px; }
+
+img.perfil {
+  height: 60px; }
