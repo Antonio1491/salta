@@ -38,7 +38,7 @@ $array_datos_usuario = $conferencista->mostrarDatosEdit($id);
         foreach ($array_datos_usuario as $valor) {
 
         $tabla = '<div id="formularioUsuarios">
-                  <form class="" action="actualizarUsuario.php?id='.$id.'" method="post" enctype="multipart/form-data">
+                  <form class="" action="actualizarConferencista.php?id='.$id.'" method="post" enctype="multipart/form-data">
                     <fieldset>';
 
         $tabla = $tabla.'<div class="row ">
@@ -58,7 +58,7 @@ $array_datos_usuario = $conferencista->mostrarDatosEdit($id);
                       </div>
                       <div class="column medium-4">
                         <label for="">Apellidos:</label>
-                        <input type="text" name="nombre" value="'.$valor['apellidos'].'" placeholder="Nombres y Apellidos" >
+                        <input type="text" name="apellidos" value="'.$valor['apellidos'].'" placeholder="Nombres y Apellidos" >
                       </div>
                     </div>
 
@@ -87,11 +87,11 @@ $array_datos_usuario = $conferencista->mostrarDatosEdit($id);
         $tabla = $tabla.'<div class="row">
                         <div class="column medium-4">
                           <label for="">País:</label>
-                          <input type="text" name="localidad" value="'.$valor['pais'].'" placeholder="País, Ciudad" required>
+                          <input type="text" name="pais" value="'.$valor['pais'].'" placeholder="País, Ciudad" required>
                         </div>
                         <div class="column medium-4">
                           <label for="">Ciudad:</label>
-                          <input type="text" name="localidad" value="'.$valor['ciudad'].'" placeholder="País, Ciudad" required>
+                          <input type="text" name="ciudad" value="'.$valor['ciudad'].'" placeholder="País, Ciudad" required>
                         </div>
                       </div>';
         $tabla = $tabla.'<div class="row ">
@@ -109,7 +109,7 @@ $array_datos_usuario = $conferencista->mostrarDatosEdit($id);
         $tabla = $tabla. '<div class="row ">
                             <div class="column medium-8">
                               <label for="">Fotografía:</label>
-                              <input type="file" name="fotografia" value="" required>
+                              <input type="file" name="fotografia" value="">
                             </div>
                           </div>
                           <div class="row">

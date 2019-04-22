@@ -81,6 +81,78 @@ class Conferencistas extends Conexion{   //utilizar variables y métodos dentro 
 
  }
 
+//Actualizar datos del conferencista sin foto
+ public function actualizarSinFoto($usuario, $password, $nombre, $apellidos, $cargo, $cargo_ing, $empresa, $empresa_ing,
+                                  $biografia, $biografia_ing, $pais, $ciudad, $conferencia, $id){
+
+      $sql = "UPDATE usuarios SET nombre = '$nombre',
+            apellidos = '$apellidos',
+            cargo = '$cargo',
+            cargo_ing = '$cargo_ing',
+            empresa = '$empresa',
+            empresa_ing = '$empresa_ing',
+            biografia = '$biografia',
+            biografia_ing = '$biografia_ing',
+            pais = '$pais',
+            ciudad = '$ciudad',
+            id_conferencia = '$conferencia'
+            WHERE id_usuario = '$id' ";
+
+      $resultado = $this->conexion_db->query($sql);
+
+        if ($resultado) {
+          $sql = "SELECT id_credenciales FROM conferencistas WHERE id_conferencista = $id";
+          $consulta = $this->conexion_db->query($sql);
+          $resultado = $consulta->fetch_all(MYSQLI_ASSOC);
+
+          foreach ($resultado as $valor) {
+            $credencial = $valor['id_credenciales'];
+          }
+          $sql = "UPDATE credenciales SET
+                  usuario = '$usuario',
+                  password = '$password'
+                  WHERE id_credenciales = $credencial";
+
+          $consulta = $this->conexion_db->query($sql);
+          $resultado = $consulta->fetch_all(MYSQLI_ASSOC);
+
+            return true;
+        }
+        else{
+          $error = "No pudimos realizar la actualización";
+          return $error;
+        }
+
+            return false;
+
+  }
+
+  //Actualizar datos del conferencista con foto nueva
+   public function actualizarConferencista($usuario, $password, $nombre, $apellidos, $cargo, $cargo_ing, $empresa, $empresa_ing,
+                                    $biografia, $biografia_ing, $pais, $ciudad, $fotografia, $conferencia, $id){
+
+        $sql = "UPDATE usuarios SET nombre = '$nombre',
+              apellidos = '$apellidos',
+              cargo = '$cargo',
+              cargo_ing = '$cargo_ing',
+              empresa = '$empresa',
+              empresa_ing = '$empresa_ing',
+              biografia = '$biografia',
+              biografia_ing = '$biografia_ing',
+              pais = '$pais',
+              ciudad = '$ciudad',
+              foto = '$fotografia',
+              id_conferencia = '$conferencia'
+              WHERE id_usuario = '$id' ";
+
+        $consulta = $this->conexion_db->query($sql);
+
+        $resultado = $consulta->fetch_all(MYSQLI_ASSOC);
+
+        return $resultado;
+
+      }
+
  // Eliminar conferencista
   public function eliminar($id){
 
