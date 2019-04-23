@@ -44,21 +44,21 @@ $array_datos_usuario = $conferencista->mostrarDatosEdit($id);
         $tabla = $tabla.'<div class="row ">
                         <div class="column medium-4">
                           <label for="">Usuario (e-mail):</label>
-                          <input type="text" name="usuario" value="" placeholder="Usuario" >
+                          <input type="text" name="usuario" value="'.$valor['usuario'].'" placeholder="Usuario" >
                         </div>
                         <div class="column medium-4">
                           <label for="">Password:</label>
-                          <input type="password" name="password" value="" placeholder="" >
+                          <input type="text" name="password" value="'.$valor['password'].'" placeholder="" >
                         </div>
                       </div>
                     <div class="row ">
                       <div class="column medium-4">
                         <label for="">Nombre:</label>
-                        <input type="text" name="nombre" value="'.$valor['nombre'].'" placeholder="Nombres y Apellidos" >
+                        <input type="text" name="nombre" value="'.$valor['nombre'].'" placeholder="Nombre" >
                       </div>
                       <div class="column medium-4">
                         <label for="">Apellidos:</label>
-                        <input type="text" name="apellidos" value="'.$valor['apellidos'].'" placeholder="Nombres y Apellidos" >
+                        <input type="text" name="apellidos" value="'.$valor['apellidos'].'" placeholder="Apellidos" >
                       </div>
                     </div>
 

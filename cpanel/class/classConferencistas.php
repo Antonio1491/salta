@@ -70,9 +70,10 @@ class Conferencistas extends Conexion{   //utilizar variables y métodos dentro 
   public function mostrarDatosEdit($id){
 
    $resultado = $this->conexion_db->query("SELECT a.nombre, a.apellidos, a.cargo, a.cargo_ing, a.empresa, a.empresa_ing,
-     a.biografia, a.biografia_ing, a.pais, a.ciudad, b.id_conferencia, b.conferencia
+     a.biografia, a.biografia_ing, a.pais, a.ciudad, a.id_credenciales, b.id_conferencia, b.conferencia, c.usuario, c.password
    FROM conferencistas AS a
-   RIGHT JOIN conferencias AS b ON b.id_conferencia = a.id_conferencia
+   LEFT JOIN conferencias AS b ON b.id_conferencia = a.id_conferencia
+   LEFT JOIN credenciales AS c ON c.id_credenciales = a.id_credenciales
    WHERE id_conferencista = $id ");
 
    $datos = $resultado->fetch_all(MYSQLI_ASSOC);
@@ -85,7 +86,7 @@ class Conferencistas extends Conexion{   //utilizar variables y métodos dentro 
  public function actualizarSinFoto($usuario, $password, $nombre, $apellidos, $cargo, $cargo_ing, $empresa, $empresa_ing,
                                   $biografia, $biografia_ing, $pais, $ciudad, $conferencia, $id){
 
-      $sql = "UPDATE usuarios SET nombre = '$nombre',
+      $sql = "UPDATE conferencistas SET nombre = '$nombre',
             apellidos = '$apellidos',
             cargo = '$cargo',
             cargo_ing = '$cargo_ing',
@@ -96,12 +97,12 @@ class Conferencistas extends Conexion{   //utilizar variables y métodos dentro 
             pais = '$pais',
             ciudad = '$ciudad',
             id_conferencia = '$conferencia'
-            WHERE id_usuario = '$id' ";
+            WHERE id_conferencista = '$id' ";
 
       $resultado = $this->conexion_db->query($sql);
 
         if ($resultado) {
-          $sql = "SELECT id_credenciales FROM conferencistas WHERE id_conferencista = $id";
+          $sql = "SELECT * FROM conferencistas WHERE id_conferencista = $id";
           $consulta = $this->conexion_db->query($sql);
           $resultado = $consulta->fetch_all(MYSQLI_ASSOC);
 
@@ -114,7 +115,7 @@ class Conferencistas extends Conexion{   //utilizar variables y métodos dentro 
                   WHERE id_credenciales = $credencial";
 
           $consulta = $this->conexion_db->query($sql);
-          $resultado = $consulta->fetch_all(MYSQLI_ASSOC);
+
 
             return true;
         }
@@ -127,11 +128,22 @@ class Conferencistas extends Conexion{   //utilizar variables y métodos dentro 
 
   }
 
+  public function eliminarFoto($id){
+    $sql = "SELECT foto FROM conferencistas WHERE id_conferencista = $id ";
+    $consulta = $this->conexion_db->query($sql);
+    $resultado = $consulta->fetch_all(MYSQLI_ASSOC);
+    foreach ($resultado as $valor) {
+      unlink("../../registros/upload/".$valor['foto']);
+    }
+
+  }
+
   //Actualizar datos del conferencista con foto nueva
    public function actualizarConferencista($usuario, $password, $nombre, $apellidos, $cargo, $cargo_ing, $empresa, $empresa_ing,
                                     $biografia, $biografia_ing, $pais, $ciudad, $fotografia, $conferencia, $id){
+        $eliminarFoto = $this->eliminarFoto($id);
 
-        $sql = "UPDATE usuarios SET nombre = '$nombre',
+        $sql = "UPDATE conferencistas SET nombre = '$nombre',
               apellidos = '$apellidos',
               cargo = '$cargo',
               cargo_ing = '$cargo_ing',
@@ -143,14 +155,32 @@ class Conferencistas extends Conexion{   //utilizar variables y métodos dentro 
               ciudad = '$ciudad',
               foto = '$fotografia',
               id_conferencia = '$conferencia'
-              WHERE id_usuario = '$id' ";
+              WHERE id_conferencista = '$id' ";
 
-        $consulta = $this->conexion_db->query($sql);
+              $resultado = $this->conexion_db->query($sql);
 
-        $resultado = $consulta->fetch_all(MYSQLI_ASSOC);
+                if ($resultado) {
+                  $sql = "SELECT * FROM conferencistas WHERE id_conferencista = $id";
+                  $consulta = $this->conexion_db->query($sql);
+                  $resultado = $consulta->fetch_all(MYSQLI_ASSOC);
 
-        return $resultado;
+                  foreach ($resultado as $valor) {
+                    $credencial = $valor['id_credenciales'];
+                  }
+                  $sql = "UPDATE credenciales SET
+                          usuario = '$usuario',
+                          password = '$password'
+                          WHERE id_credenciales = $credencial";
 
+                  $consulta = $this->conexion_db->query($sql);
+
+
+                    return true;
+                }
+                else{
+                  $error = "No pudimos realizar la actualización";
+                  return $error;
+                }
       }
 
  // Eliminar conferencista

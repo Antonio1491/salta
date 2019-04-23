@@ -18,8 +18,8 @@
           </ul> -->
       <!-- </ul> -->
     </li>
-    <!-- <li><a href="conferenciasCPM2019.php"><i class="fi-megaphone"></i> Conferencias</a></li> -->
     <li><a href="conferencista.php"><i class="fi-torsos-all"></i> Conferencistas</a></li>
+    <li><a href="conferencias.php"><i class="fi-projection-screen"></i> Conferencias</a></li>
     <!-- <li><a href="voluntarios.php"><i class="fi-torsos-all"></i> Voluntarios</a></li> -->
     <!-- <li><a href="firmas2019.php"><i class="fi-check"></i> Firmas</a></li> -->
   </li>
