@@ -125,19 +125,19 @@ include('../class/funciones.php');
               <div class="row">
                 <div class="column medium-8">
                   <label for="">Objetivo 1:</label>
-                  <textarea name="Objetivo1" rows="1" cols="80" placeholder="La sesión debe contar con objetivos de aprendizaje, claros y medibles." required></textarea>
+                  <textarea name="objetivo1" rows="1" cols="80" placeholder="La sesión debe contar con objetivos de aprendizaje, claros y medibles." required></textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="column medium-8">
                   <label for="">Objetivo 2:</label>
-                  <textarea name="Objetivo2" rows="1" cols="80" placeholder="La sesión debe contar con objetivos de aprendizaje, claros y medibles." required></textarea>
+                  <textarea name="objetivo2" rows="1" cols="80" placeholder="La sesión debe contar con objetivos de aprendizaje, claros y medibles." required></textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="column medium-8">
                   <label for="">Objetivo 3:</label>
-                  <textarea name="Objetivo3" rows="1" cols="80" placeholder="La sesión debe contar con objetivos de aprendizaje, claros y medibles." required></textarea>
+                  <textarea name="objetivo3" rows="1" cols="80" placeholder="La sesión debe contar con objetivos de aprendizaje, claros y medibles." required></textarea>
                 </div>
               </div>
               <div class="row ">

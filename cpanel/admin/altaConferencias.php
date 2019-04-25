@@ -2,26 +2,19 @@
 include('../class/funciones.php');
 
 $conferencia = $_POST['conferencia'];
-
 $conferencia_ing = addslashes($_POST['conferencia_ing']);
-
 $fecha = $_POST['fecha'];
-
-$hora = $_POST['hora'];
-
-$hora_fin = $_POST['hora_fin'];
-
+$hora = $_POST['inicio'];
+$hora_fin = $_POST['fin'];
 $lugar = $_POST['lugar'];
-
 $tema = $_POST['tema'];
-
+$tema = $_POST['tipo'];
 $descripcion = addslashes($_POST['descripcion']);
-
 $descripcion_ing = addslashes($_POST['descripcion_ing']);
-
+$objetivo1 = addslashes($_POST['objetivo1']);
+$objetivo2 = addslashes($_POST['objetivo2']);
+$objetivo3 = addslashes($_POST['objetivo3']);
 $registro = new RegistroConferencia();
-
-$evento = "CPM2019";
 
 $resultado = $registro->registrar($conferencia, $conferencia_ing, $fecha, $hora, $hora_fin,
                                   $lugar, $descripcion, $descripcion_ing, $tema, $evento);
