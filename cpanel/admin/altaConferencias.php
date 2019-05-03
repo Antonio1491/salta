@@ -8,16 +8,17 @@ $hora = $_POST['inicio'];
 $hora_fin = $_POST['fin'];
 $lugar = $_POST['lugar'];
 $tema = $_POST['tema'];
-$tema = $_POST['tipo'];
+$tipo = $_POST['tipo'];
 $descripcion = addslashes($_POST['descripcion']);
 $descripcion_ing = addslashes($_POST['descripcion_ing']);
 $objetivo1 = addslashes($_POST['objetivo1']);
 $objetivo2 = addslashes($_POST['objetivo2']);
 $objetivo3 = addslashes($_POST['objetivo3']);
-$registro = new RegistroConferencia();
+$registro = new Conferencia();
 
 $resultado = $registro->registrar($conferencia, $conferencia_ing, $fecha, $hora, $hora_fin,
-                                  $lugar, $descripcion, $descripcion_ing, $tema, $evento);
+                                  $lugar, $tema, $tipo, $descripcion, $descripcion_ing,
+                                  $objetivo1, $objetivo2, $objetivo3);
 
 if ($resultado) {
 

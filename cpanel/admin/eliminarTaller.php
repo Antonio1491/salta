@@ -1,8 +1,9 @@
 <?php
 include('../class/funciones.php');
+
 $id = $_GET['id'];
 
-$eliminar = new Conferencia();
+$eliminar = new Taller();
 
 $resultado = $eliminar->eliminar($id);
 

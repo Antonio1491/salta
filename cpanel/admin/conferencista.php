@@ -47,7 +47,7 @@ $array_conferencias = $conferencias->listaConferencias();
                  </div>
                  <div class="row ">
                    <div class="column medium-4">
-                      <label for="">Usuario:</label>
+                      <label for="">Usuario (e-mail):</label>
                       <input type="text" name="usuario" value="" placeholder="E-mail" required>
                    </div>
                    <div class="column medium-4">
@@ -150,8 +150,8 @@ $array_conferencias = $conferencias->listaConferencias();
             echo "<table class='tablaResultados'>
                     <thead>
                       <tr>
-                        <th>NO.</th>
-                        <th>Fotografía</th>
+                        <th>#</th>
+                        <th>Foto</th>
                         <th>Usuario</th>
                         <th>Nombre</th>
                         <th>Apellido</th>

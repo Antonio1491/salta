@@ -76,7 +76,7 @@ class Registro extends Conexion{
       $mail = new PHPMailer\PHPMailer\PHPMailer();
       $mail->CharSet = 'UTF-8';
               //Luego tenemos que iniciar la validación por SMTP:
-              $mail->SMTPDebug = 2 ;
+              $mail->SMTPDebug = 0 ;
               $mail->IsSMTP();
               $mail->SMTPAuth = true;
               $mail->Host = "smtp.hostinger.com"; // A RELLENAR. Aquí pondremos el SMTP a utilizar. Por ej. mail.midominio.com

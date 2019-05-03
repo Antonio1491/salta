@@ -35,7 +35,8 @@ $propuestas = new MostrarConferencia();
           echo "<table class='tablaResultados'>
                 <thead>
                   <tr>
-                    <th>Folio</th>
+                    <th>#</th>
+                    <!--<th>Folio</th>-->
                     <th>Propuesta</th>
                     <th>Modalidad</th>
                     <th>Autor</th>
@@ -48,8 +49,10 @@ $propuestas = new MostrarConferencia();
                     $i=0;
                     foreach ($array_propuestas as $valor) {
                       $i += 1;
-                      echo $x ="<tr id='".$valor['id_conferencia']."'>
-                        <td>".$valor['id_conferencia']."</td>
+
+                  echo"<tr id='".$valor['id_conferencia']."'>
+                        <td>".$i ."</td>
+                        <!--<td>".$valor['id_conferencia']."</td>-->
                         <td><a href='descripcionPropuesta.php?id=".$valor['id_conferencia']."'>".$valor['conferencia']."<a></td>
                         <td>".$valor['modalidad']."</td>
                         <td>".$valor['nombre']." ".$valor['apellidos']."</td>

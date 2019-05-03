@@ -1,29 +1,45 @@
 <?php session_start();
 $id = $_GET['id'];
-require("../inc/clases2.php");
+include('../class/funciones.php');
 ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Edición Conferencias</title>
-    <link rel="stylesheet" href="../css/foundation.css">
-    <link rel="stylesheet" href="css/app-admin.css">
-    <link rel="stylesheet" href="../font/foundation-icons.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-    <script type="text/javascript" src="../js/app.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/foundation/foundation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" type="text/javascript"></script>
+    <script src="../../js/vendor/what-input.js" type="text/javascript"></script>
+    <script src="../../js/vendor/foundation.min.js" type="text/javascript"></script>
+    <!-- <script type="text/javascript" src="../js/app.js"></script> -->
+    <script>
+    $(document).foundation();
+
+    $(document).ready(function(){
+    $("#agregar").click(function(){
+      $(".registro").fadeToggle();
+    });
+    });
+    </script>
   </head>
   <body>
-    <header></header>
-    <main class="row expanded">
-      <div class="column medium-2">
-        <?php include("menu.php") ?>
+    <header>
+      <div class="rows">
+        <div class="column medium-10 medium-offset-2 text-center">
+          <h4>Conferencias</h4>
+        </div>
       </div>
-      <div class="column medium-10 contenido">
+    </header>
+    <main class="row expanded">
+      <div class="medium-2">
+        <?php include("inc/menu.php") ?>
+      </div>
+      <div class="column medium-10">
         <div class="">
           <?php
 
-            $traer_datos = new DatosConferencia();
+            $traer_datos = new Conferencia();
 
             $resultado = $traer_datos->mostrarConferencia($id);
 
@@ -39,13 +55,13 @@ require("../inc/clases2.php");
                     <div class="row ">
                       <div class="column medium-8">
                         <label for="">Conferencia:</label>
-                        <input type="text" name="conferencia" value="'.$valor['nombre_conferencia'].'" placeholder="Nombre de la Conferencia" required>
+                        <input type="text" name="conferencia" value="'.$valor['conferencia'].'" placeholder="Nombre de la Conferencia" required>
                       </div>
                     </div>
                     <div class="row ">
                       <div class="column medium-8">
-                        <label for="">Conferencia:</label>
-                        <input type="text" name="conferencia_ing" value="'.$valor['nombre_conferencia_ing'].'" placeholder="Nombre de la Conferencia" required>
+                        <label for="">Conference:</label>
+                        <input type="text" name="conferencia_ing" value="'.$valor['conferencia_ing'].'" placeholder="Nombre de la Conferencia" required>
                       </div>
                     </div>
                     <div class="row">
@@ -54,34 +70,44 @@ require("../inc/clases2.php");
                         <input type="date" name="fecha" value="'.$valor['fecha'].'" placeholder="Día/Mes/Año">
                       </div>
                       <div class="column medium-2">
-                        <label for="">Hora:</label>
-                        <input type="time" name="hora" value="'.$valor['hora'].'" placeholder="00:00">
+                        <label for="">Inicio:</label>
+                        <input type="time" name="hora" value="'.$valor['inicio'].'" placeholder="00:00">
                       </div>
                       <div class="column medium-2">
-                        <label for="">Hora Fin:</label>
-                        <input type="time" name="hora_fin" value="'.$valor['hora_fin'].'" placeholder="00:00:00">
+                        <label for="">Fin:</label>
+                        <input type="time" name="hora_fin" value="'.$valor['fin'].'" placeholder="00:00:00">
+                      </div>
+                      <div class="column medium-2">
+                        <label for="">Lugar:</label>
+                        <input type="text" name="lugar" value="'.$valor['salon'].'">
                       </div>
                     </div>
                     <div class="row ">
                     <div class="column medium-4">
-                      <label for="">Lugar:</label>
-                      <input type="text" name="lugar" value="'.$valor['lugar'].'">
+                      <label>Tipo:
+                        <select name="tipo">
+                        <option value="'.$valor['id_tipo'].'">'.$valor['tipo'].'</option>';
+                            $listaTipo = new Conferencia();
+                            $lista = $listaTipo->conferenciaTipo();
+                            foreach ($lista as $value) {
+                              echo'<option value="'.$value['id_tipo'].'">'.$value['tipo'].'</option>';
+                              }
+
+                    echo '  </select>
+                      </label>
                     </div>
                     <div class="column medium-4">
                       <label>Tema:
-                        <select name="tema">
-                        <option value="'.$valor['id_tema'].'">'.$valor['nombre'].'</option>
-                        ';
-                          $desplegar_temas = new ListaTemas();
+                      <select name="tema">
+                        <?php
+                            $lista_de_temas = new Conferencia();
+                            $lista = $lista_de_temas->temas();
+                            foreach ($lista as $valor) {
+                              echo "<option value="'.$valor['id_tema'].'">'.$valor['tema'].'</option>";
 
-                          $resultado = $desplegar_temas->desplegarTemas();
-
-                          foreach ($resultado as $value) {
-
-                                echo "<option value='".$value['id_tema']."'>".$value['nombre']."</option>";
-
-                                }
-                        echo'</select>
+                            }
+                        ?>
+                      </select>
                       </label>
                     </div>
                   </div>
@@ -96,9 +122,27 @@ require("../inc/clases2.php");
 
                     <div class="row ">
                     <div class="column medium-8">
-                      <label for="">Descripción:</label>
+                      <label for="">Description:</label>
                       <textarea name="descripcion_ing" rows="4" cols="1" value="'.$valor['descripcion_ing'].'">'.$valor['descripcion_ing'].'</textarea>
                     </div>
+                    </div>
+                    <div class="row">
+                      <div class="column medium-8">
+                        <label for="">Objetivo 1:</label>
+                        <textarea name="objetivo1" rows="1" cols="80" value="'.$valor['objetivo1'].'"></textarea>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column medium-8">
+                        <label for="">Objetivo 2:</label>
+                        <textarea name="objetivo2" rows="1" cols="80" value="'.$valor['objetivo2'].'"></textarea>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column medium-8">
+                        <label for="">Objetivo 3:</label>
+                        <textarea name="objetivo3" rows="1" cols="80" value="'.$valor['objetivo3'].'"></textarea>
+                      </div>
                     </div>
 
                     <div class="row ">

@@ -27,7 +27,7 @@ include('../class/funciones.php');
     <header>
       <div class="rows">
         <div class="column medium-10 medium-offset-2 text-center">
-          <h4>Conferencias</h4>
+          <h4>Talleres</h4>
         </div>
       </div>
     </header>
@@ -39,28 +39,28 @@ include('../class/funciones.php');
         <div class="row">
           <div class="column medium-12">
             <button type="button" name="button" id="agregar" class="button">
-              <i class="fi-plus"></i> Agregar Conferencia
+              <i class="fi-plus"></i> Agregar Taller
             </button>
           </div>
         </div>
         <div class="registro">
-          <form class="" action="altaConferencias.php" method="post">
+          <form class="" action="altaTaller.php" method="post" enctype="multipart/form-data">
             <fieldset>
               <div class="row">
                 <div class="column">
-                  <legend><h5>Registro Conferencias</h5></legend>
+                  <legend><h5>Registro Taller</h5></legend>
                 </div>
               </div>
               <div class="row ">
                 <div class="column medium-8">
-                  <label for="">Conferencia:</label>
-                  <input type="text" name="conferencia" value="" placeholder="Nombre de la Conferencia" required>
+                  <label for="">Taller:</label>
+                  <input type="text" name="taller" value="" placeholder="Nombre de la Conferencia" required>
                 </div>
               </div>
               <div class="row ">
                 <div class="column medium-8">
-                  <label for="">Conference:</label>
-                  <input type="text" name="conferencia_ing" value="" placeholder="Nombre de la Conferencia" required>
+                  <label for="">Workshop:</label>
+                  <input type="text" name="taller_ing" value="" placeholder="Nombre de la Conferencia" required>
                 </div>
               </div>
               <div class="row">
@@ -69,45 +69,36 @@ include('../class/funciones.php');
                   <input type="date" name="fecha" value="" placeholder="Día/Mes/Año">
                 </div>
                 <div class="column medium-2">
-                  <label for="">Hora Inicio:</label>
+                  <label for="">Inicio:</label>
                   <input type="time" name="inicio" value="" placeholder="00:00:00">
                 </div>
                 <div class="column medium-2">
-                  <label for="">Hora Fin:</label>
+                  <label for="">Fin:</label>
                   <input type="time" name="fin" value="" placeholder="00:00:00">
                 </div>
                 <div class="column medium-2">
-                  <label for="">Lugar:</label>
-                  <input type="text" name="lugar" value="">
+                  <label for="">Capacidad:</label>
+                  <input type="number" name="capacidad" value="" >
                 </div>
               </div>
               <div class="row ">
-                <div class="column medium-4">
-                  <label>Tema:
-                    <select name="tema">
-                      <?php
-                          $lista_de_temas = new Conferencia();
-                          $lista = $lista_de_temas->temas();
-                          foreach ($lista as $valor) {
-                            echo "<option value='".$valor['id_tema']."'>".$valor['tema']."</option>";
-
-                          }
-                      ?>
+                <div class="column medium-5">
+                  <label for="">Tallerista:</label>
+                  <input type="text" name="tallerista" value="" placeholder="" >
+                </div>
+                <div class="column medium-3">
+                  <label>Tipo de taller:
+                    <select name="tipo" required>
+                      <option value="Vivencial">Vivencial</option>
+                      <option value="Curricular">Curricular</option>
                     </select>
                   </label>
                 </div>
-                <div class="column medium-4">
-                  <label>Tipo:
-                    <select name="tipo">
-                      <?php
-                          $lista_tipo = new Conferencia();
-                          $lista = $lista_de_temas->conferenciaTipo();
-                          foreach ($lista as $valor) {
-                            echo "<option value='".$valor['id_tipo']."'>".$valor['tipo']."</option>";
-                          }
-                      ?>
-                    </select>
-                  </label>
+              </div>
+              <div class="row ">
+                <div class="column medium-8">
+                  <label for="file">Fotografía:</label>
+                  <input type="file" name="fotografia" value="" required>
                 </div>
               </div>
               <div class="row ">
@@ -122,24 +113,7 @@ include('../class/funciones.php');
                   <textarea name="descripcion_ing" rows="4" cols="80"></textarea>
                 </div>
               </div>
-              <div class="row">
-                <div class="column medium-8">
-                  <label for="">Objetivo 1:</label>
-                  <textarea name="objetivo1" rows="1" cols="80" placeholder="La sesión debe contar con objetivos de aprendizaje, claros y medibles." required></textarea>
-                </div>
-              </div>
-              <div class="row">
-                <div class="column medium-8">
-                  <label for="">Objetivo 2:</label>
-                  <textarea name="objetivo2" rows="1" cols="80" placeholder="La sesión debe contar con objetivos de aprendizaje, claros y medibles." required></textarea>
-                </div>
-              </div>
-              <div class="row">
-                <div class="column medium-8">
-                  <label for="">Objetivo 3:</label>
-                  <textarea name="objetivo3" rows="1" cols="80" placeholder="La sesión debe contar con objetivos de aprendizaje, claros y medibles." required></textarea>
-                </div>
-              </div>
+
               <div class="row ">
                 <input type="submit" name="" value="Registrar" class="button success">
               </div>
@@ -149,17 +123,20 @@ include('../class/funciones.php');
 
       <div class="row" id="listaConferencias">
           <?php
-              $lista_conferencias = new Conferencia();
-              $respuesta = $lista_conferencias->listaConferencias();
+              $talleres = new Taller();
+              $respuesta = $talleres->listaTalleres();
             echo "<table class='tablaResultados'>
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Nombre</th>
-                        <th>Fecha</th>
+                        <th>Foto</th>
+                        <th>Taller</th>
+                        <th>Workshop</th>
+                        <th>fecha</th>
                         <th>Inicio</th>
                         <th>Fin</th>
-                        <th>Lugar</th>
+                        <th>Capacidad</th>
+                        <th>Tipo</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
@@ -169,13 +146,16 @@ include('../class/funciones.php');
                         $num++;
                         echo "<tr>
                         <td>".$num ."</td>
-                        <td>" .$valor['conferencia']. "</td>
+                        <td><img src='../../img/uploads/".$valor['foto']."'></td>
+                        <td>" .$valor['taller']. "</td>
+                        <td>" .$valor['taller_ing']. "</td>
                         <td>" .$valor['fecha']. "</td>
                         <td>" .$valor['inicio']. "</td>
                         <td>" .$valor['fin']. "</td>
-                        <td>" .$valor['salon']. "</td>
-                        <td class='acciones'><a href='editarConferencia.php?id=".$valor['id_conferencia']."' title='Editar'><i class='fi-pencil'></i></a> |
-                        <a href='eliminarConferencia.php?id=".$valor['id_conferencia']."' title='Eliminar' class='eliminar'><i class='fi-x'></i> </a></td>
+                        <td>" .$valor['capacidad']. "</td>
+                        <td>" .$valor['tipo']. "</td>
+                        <td class='acciones'><a href='editarTaller.php?id=".$valor['id_taller']."' title='Editar'><i class='fi-pencil'></i></a> |
+                        <a href='eliminarTaller.php?id=".$valor['id_taller']."' title='Eliminar' class='eliminar'><i class='fi-x'></i> </a></td>
                         </tr>";
                       }
                     echo "
