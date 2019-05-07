@@ -61,7 +61,6 @@ $array_datos_usuario = $conferencista->mostrarDatosEdit($id);
                         <input type="text" name="apellidos" value="'.$valor['apellidos'].'" placeholder="Apellidos" >
                       </div>
                     </div>
-
                     ';
 
         $tabla = $tabla.'<div class="row ">

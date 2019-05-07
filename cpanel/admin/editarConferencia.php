@@ -13,15 +13,7 @@ include('../class/funciones.php');
     <script src="../../js/vendor/what-input.js" type="text/javascript"></script>
     <script src="../../js/vendor/foundation.min.js" type="text/javascript"></script>
     <!-- <script type="text/javascript" src="../js/app.js"></script> -->
-    <script>
-    $(document).foundation();
 
-    $(document).ready(function(){
-    $("#agregar").click(function(){
-      $(".registro").fadeToggle();
-    });
-    });
-    </script>
   </head>
   <body>
     <header>
@@ -71,11 +63,11 @@ include('../class/funciones.php');
                       </div>
                       <div class="column medium-2">
                         <label for="">Inicio:</label>
-                        <input type="time" name="hora" value="'.$valor['inicio'].'" placeholder="00:00">
+                        <input type="time" name="inicio" value="'.$valor['inicio'].'" placeholder="00:00">
                       </div>
                       <div class="column medium-2">
                         <label for="">Fin:</label>
-                        <input type="time" name="hora_fin" value="'.$valor['fin'].'" placeholder="00:00:00">
+                        <input type="time" name="fin" value="'.$valor['fin'].'" placeholder="00:00:00">
                       </div>
                       <div class="column medium-2">
                         <label for="">Lugar:</label>
@@ -99,17 +91,15 @@ include('../class/funciones.php');
                     <div class="column medium-4">
                       <label>Tema:
                       <select name="tema">
-                        <?php
-                            $lista_de_temas = new Conferencia();
-                            $lista = $lista_de_temas->temas();
-                            foreach ($lista as $valor) {
-                              echo "<option value="'.$valor['id_tema'].'">'.$valor['tema'].'</option>";
-
+                      <option value="'.$valor['id_tema'].'">'.$valor['tema'].'</option>';
+                          // $listaTipo = new Conferencia();
+                          $lista = $listaTipo->temas();
+                          foreach ($lista as $value) {
+                            echo'<option value="'.$value['id_tema'].'">'.$value['tema'].'</option>';
                             }
-                        ?>
-                      </select>
-                      </label>
-                    </div>
+                            echo '  </select>
+                              </label>
+                      </div>
                   </div>
 
 
@@ -129,19 +119,19 @@ include('../class/funciones.php');
                     <div class="row">
                       <div class="column medium-8">
                         <label for="">Objetivo 1:</label>
-                        <textarea name="objetivo1" rows="1" cols="80" value="'.$valor['objetivo1'].'"></textarea>
+                        <textarea name="objetivo1" rows="1" cols="80" value="'.$valor['objetivo1'].'">'.$valor['objetivo1'].'</textarea>
                       </div>
                     </div>
                     <div class="row">
                       <div class="column medium-8">
                         <label for="">Objetivo 2:</label>
-                        <textarea name="objetivo2" rows="1" cols="80" value="'.$valor['objetivo2'].'"></textarea>
+                        <textarea name="objetivo2" rows="1" cols="80" value="'.$valor['objetivo2'].'">'.$valor['objetivo2'].'</textarea>
                       </div>
                     </div>
                     <div class="row">
                       <div class="column medium-8">
                         <label for="">Objetivo 3:</label>
-                        <textarea name="objetivo3" rows="1" cols="80" value="'.$valor['objetivo3'].'"></textarea>
+                        <textarea name="objetivo3" rows="1" cols="80" value="'.$valor['objetivo3'].'">'.$valor['objetivo3'].'</textarea>
                       </div>
                     </div>
 

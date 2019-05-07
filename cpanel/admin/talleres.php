@@ -5,7 +5,7 @@ include('../class/funciones.php');
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Alta de Conferencias</title>
+    <title>Alta de Talleres</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../../css/foundation/foundation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css">
@@ -98,7 +98,7 @@ include('../class/funciones.php');
               <div class="row ">
                 <div class="column medium-8">
                   <label for="file">Fotografía:</label>
-                  <input type="file" name="fotografia" value="" required>
+                  <input type="file" name="fotografia" value="">
                 </div>
               </div>
               <div class="row ">

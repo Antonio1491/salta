@@ -1,24 +1,26 @@
 <?php session_start();
+include('../class/funciones.php');
 
 $id = $_GET['id'];
-
-require("../inc/clases2.php");
 
 $conferencia = $_POST['conferencia'];
 $conferencia_ing = addslashes($_POST['conferencia_ing']);
 $fecha = $_POST['fecha'];
-$hora = $_POST['hora'];
-$hora_fin = $_POST['hora_fin'];
+$hora = $_POST['inicio'];
+$hora_fin = $_POST['fin'];
 $lugar = $_POST['lugar'];
+$tema = $_POST['tema'];
+$tipo = $_POST['tipo'];
 $descripcion = addslashes($_POST['descripcion']);
 $descripcion_ing = addslashes($_POST['descripcion_ing']);
-$tema = $_POST['tema'];
+$objetivo1 = addslashes($_POST['objetivo1']);
+$objetivo2 = addslashes($_POST['objetivo2']);
+$objetivo3 = addslashes($_POST['objetivo3']);
+$registro = new Conferencia();
 
-$actualizar = new ActualizarConferencia();
-
-$resultado = $actualizar->actualizar($conferencia, $conferencia_ing, $fecha, $hora,
-                                    $hora_fin, $lugar, $descripcion, $descripcion_ing,
-                                    $tema, $id);
+$resultado = $registro->actualizar($conferencia, $conferencia_ing, $fecha, $hora, $hora_fin,
+                                  $lugar, $tema, $tipo, $descripcion, $descripcion_ing,
+                                  $objetivo1, $objetivo2, $objetivo3, $id);
 
   if ($resultado) {
 

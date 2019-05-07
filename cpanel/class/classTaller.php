@@ -25,16 +25,64 @@ class Taller extends Conexion{
     }
 
     public function mostrarTaller($id){
-      $resultado = $this->conexion_db->query("SELECT a.conferencia,
-      a.conferencia_ing, a.descripcion, a.descripcion_ing, a.objetivo1,
-      a.objetivo2, a.objetivo3, a.fecha,
-      a.inicio, a.fin, a.salon, b.id_tema, b.tema
-      FROM conferencias AS a
-      LEFT JOIN temas as b ON b.id_tema = a.id_tema
-      WHERE id_conferencia = '$id' ");
+      $resultado = $this->conexion_db->query("SELECT *
+      FROM talleres
+      WHERE id_taller = '$id' ");
       $respuesta = $resultado->fetch_all(MYSQLI_ASSOC);
       return $respuesta;
     }
+
+    public function eliminarFoto($id){
+      $sql = "SELECT foto FROM talleres WHERE id_taller = $id ";
+      $consulta = $this->conexion_db->query($sql);
+      $resultado = $consulta->fetch_all(MYSQLI_ASSOC);
+      foreach ($resultado as $valor) {
+        unlink("../../img/uploads/".$valor['foto']);
+      }
+    }
+
+    public function actualizar($taller, $taller_ing, $fecha,
+                    $inicio, $fin, $capacidad, $tallerista, $tipo,
+                    $descripcion, $descripcion_ing, $fotografia, $id){
+
+      $eliminarFoto = $this->eliminarFoto($id);
+
+      $sql = "UPDATE talleres SET
+              taller = '$taller',
+              taller_ing = '$taller_ing',
+              descripcion = '$descripcion',
+              descripcion_ing = '$descripcion_ing',
+              fecha = '$fecha',
+              inicio = '$inicio',
+              fin = '$fin',
+              tallerista = '$tallerista',
+              capacidad = '$capacidad',
+              tipo = '$tipo',
+              foto = '$fotografia'
+              WHERE id_taller = '$id'
+              ";
+      $consultar = $this->conexion_db->query($sql);
+    }
+
+    public function actualizarSinFoto($taller, $taller_ing, $fecha,
+                    $inicio, $fin, $capacidad, $tallerista, $tipo,
+                    $descripcion, $descripcion_ing, $id){
+      $sql = "UPDATE talleres SET
+              taller = '$taller',
+              taller_ing = '$taller_ing',
+              descripcion = '$descripcion',
+              descripcion_ing = '$descripcion_ing',
+              fecha = '$fecha',
+              inicio = '$inicio',
+              fin = '$fin',
+              tallerista = '$tallerista',
+              capacidad = '$capacidad',
+              tipo = '$tipo'
+              WHERE id_taller = '$id'
+              ";
+      $consultar = $this->conexion_db->query($sql);
+    }
+
 
     public function eliminar($id){
      $sql = $this->conexion_db->query("DELETE FROM talleres

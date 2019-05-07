@@ -34,11 +34,11 @@ class Conferencia extends Conexion{
       $resultado = $this->conexion_db->query("SELECT a.conferencia,
       a.conferencia_ing, a.id_tema, a.id_tipo, a.descripcion, a.descripcion_ing, a.objetivo1,
       a.objetivo2, a.objetivo3, a.fecha,
-      a.inicio, a.fin, a.salon, b.id_tema, b.tema, c.tipo
+      a.inicio, a.fin, a.salon, b.id_tema, b.tema, t.tipo
       FROM conferencias AS a
       LEFT JOIN temas as b ON b.id_tema = a.id_tema
       LEFT JOIN tipo_conferencia as t ON t.id_tipo = a.id_tipo
-      WHERE a.id_conferencia = '$id' ");
+      WHERE id_conferencia = '$id' ");
       $respuesta = $resultado->fetch_all(MYSQLI_ASSOC);
       return $respuesta;
     }
@@ -51,6 +51,30 @@ class Conferencia extends Conexion{
       '$descripcion_ing', null, '$objetivo1', '$objetivo2', '$objetivo3', null, 'aceptada',
       '$fecha', '$hora', '$hora_fin', '$lugar')";
       $resultado = $this->conexion_db->query($sql);
+      return $resultado;
+    }
+
+    public function actualizar($conferencia, $conferencia_ing, $fecha, $hora, $hora_fin,
+                                      $lugar, $tema, $tipo, $descripcion, $descripcion_ing,
+                                      $objetivo1, $objetivo2, $objetivo3, $id){
+    $sql = "UPDATE conferencias SET
+              conferencia = '$conferencia',
+              conferencia_ing = '$conferencia_ing',
+              id_tema = '$tema',
+              id_tipo = '$tipo',
+              descripcion = '$descripcion',
+              descripcion_ing = '$descripcion_ing',
+              objetivo1 = '$objetivo1',
+              objetivo2 = '$objetivo2',
+              objetivo3 = '$objetivo3',
+              fecha = '$fecha',
+              inicio = '$hora',
+              fin = '$hora_fin',
+              salon = '$lugar'
+              WHERE id_conferencia = '$id' ";
+
+      $resultado = $this->conexion_db->query($sql);
+
       return $resultado;
     }
 
